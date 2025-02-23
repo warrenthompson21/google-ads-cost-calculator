@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPC ROI Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>PPC ROI Calculator</h1>
+        
+        <div class="input-section">
+            <h2>Input Values</h2>
+            <div class="input-group" data-symbol="$">
+                <label for="adSpend">Ad Spend:</label>
+                <input type="number" id="adSpend" min="0" step="0.01" placeholder="5000">
+                <span class="hint">Enter your monthly ad spend amount</span>
+            </div>
+            <div class="input-group" data-symbol="$">
+                <label for="cpc">Average Cost-Per-Click:</label>
+                <input type="number" id="cpc" min="0" step="0.01" placeholder="2.00">
+                <span class="hint">Your average cost per click from ad platforms</span>
+            </div>
+            <div class="input-group" data-symbol="%">
+                <label for="conversionRate">Average Website Conversion Rate:</label>
+                <input type="number" id="conversionRate" min="0" max="100" step="0.01" placeholder="2.5">
+                <span class="hint">Percentage of visitors who become leads</span>
+            </div>
+            <div class="input-group" data-symbol="%">
+                <label for="qualificationRate">Average Qualification Rate:</label>
+                <input type="number" id="qualificationRate" min="0" max="100" step="0.01" placeholder="25">
+                <span class="hint">Percentage of leads that qualify for your service</span>
+            </div>
+            <div class="input-group" data-symbol="%">
+                <label for="closeRate">Average Close Rate:</label>
+                <input type="number" id="closeRate" min="0" max="100" step="0.01" placeholder="30">
+                <span class="hint">% of qualified leads that become customers</span>
+            </div>
+            <div class="input-group" data-symbol="$">
+                <label for="customerValue">Average Customer Value:</label>
+                <input type="number" id="customerValue" min="0" step="0.01" placeholder="5000">
+                <span class="hint">Average revenue per customer</span>
+            </div>
+            <div class="input-group" data-symbol="%">
+                <label for="margin">Average Margin:</label>
+                <input type="number" id="margin" min="0" max="100" step="0.01" placeholder="40">
+                <span class="hint">Your profit margin percentage</span>
+            </div>
+            <div class="input-group" data-symbol="$">
+                <label for="agencyCost">Marketing Agency/Team Cost:</label>
+                <input type="number" id="agencyCost" min="0" step="0.01" placeholder="2500">
+                <span class="hint">Monthly cost of marketing team or agency</span>
+            </div>
+            <button onclick="calculateROI()">Calculate</button>
+        </div>
+
+        <div class="results-section">
+            <h2>Results</h2>
+            <div class="result-group">
+                <label>Number of Clicks:</label>
+                <span id="clicks">0</span>
+            </div>
+            <div class="result-group">
+                <label>Cost Per Lead ($):</label>
+                <span id="costPerLead">0</span>
+            </div>
+            <div class="result-group">
+                <label>Number of Customers:</label>
+                <span id="customers">0</span>
+            </div>
+            <div class="result-group">
+                <label>Revenue ($):</label>
+                <span id="revenue">0</span>
+            </div>
+            <div class="result-group">
+                <label>Profit ($):</label>
+                <span id="profit">0</span>
+            </div>
+            <div class="result-group">
+                <label>ROI (%):</label>
+                <span id="roi">0</span>
+            </div>
+            <div class="roi-message" id="roiMessage"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
