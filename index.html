@@ -4,56 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Ads Cost Calculator | Calculate PPC ROI</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="calculator-container">
+        <div style="text-align: center; padding-bottom: 20px;">
+            <img src="images/Ollo-Metrics-Google-Ads-Cost-Calculator.jpg" alt="Google Ads Cost Calculator by Ollo Metrics">
+        </div>
         <h1>Google Ads Cost Calculator</h1>
-        <p>Calculate your Google Ads cost and ROI quickly and easily.</p>
+        <p style="text-align: center; padding-bottom: 10px;">Calculate your Google Ads cost and ROI below.</p>
         
         <div class="input-section">
             <h2>Input Values</h2>
-            <div class="input-group" data-symbol="$">
-                <label for="adSpend">Ad Spend:</label>
-                <input type="number" id="adSpend" min="0" step="0.01" placeholder="5000">
-                <span class="hint">Enter your monthly ad spend amount</span>
+            
+            <!-- Marketing Metrics Section -->
+            <div class="metric-group">
+                <div class="metric-header">
+                    <h3>Marketing Metrics</h3>
+                    <p class="metric-description">
+                        These metrics help track your advertising performance and lead generation efficiency. 
+                        They measure how much you're spending to attract visitors and how well your website 
+                        converts them into leads.
+                    </p>
+                </div>
+                <div class="metric-inputs">
+                    <div class="input-group" data-symbol="$">
+                        <label for="adSpend">Ad Spend:</label>
+                        <input type="number" id="adSpend" min="0" step="100" value="5000" placeholder="5000">
+                        <span class="hint">Enter your monthly ad spend amount</span>
+                    </div>
+                    <div class="input-group" data-symbol="$">
+                        <label for="cpc">Average Cost-Per-Click:</label>
+                        <input type="number" id="cpc" min="0" step=".25" value="2.00" placeholder="2.00">
+                        <span class="hint">Your average cost per click from ad platforms</span>
+                    </div>
+                    <div class="input-group" data-symbol="%">
+                        <label for="conversionRate">Average Website Conversion Rate:</label>
+                        <input type="number" id="conversionRate" min="0" max="100" step=".05" value="3.00" placeholder="2.5">
+                        <span class="hint">Percentage of visitors who become leads</span>
+                    </div>
+                </div>
             </div>
-            <div class="input-group" data-symbol="$">
-                <label for="cpc">Average Cost-Per-Click:</label>
-                <input type="number" id="cpc" min="0" step="0.01" placeholder="2.00">
-                <span class="hint">Your average cost per click from ad platforms</span>
+
+            <!-- Sales Metrics Section -->
+            <div class="metric-group">
+                <div class="metric-header">
+                    <h3>Sales Metrics</h3>
+                    <p class="metric-description">
+                        These metrics focus on your sales pipeline effectiveness. They track how well your 
+                        team converts leads into customers and the value each customer brings to your business.
+                    </p>
+                </div>
+                <div class="metric-inputs">
+                    <div class="input-group" data-symbol="%">
+                        <label for="qualificationRate">Average Qualification Rate:</label>
+                        <input type="number" id="qualificationRate" min="0" max="100" step="1" value="25" placeholder="25">
+                        <span class="hint">Percentage of leads that qualify for your service</span>
+                    </div>
+                    <div class="input-group" data-symbol="%">
+                        <label for="closeRate">Average Close Rate:</label>
+                        <input type="number" id="closeRate" min="0" max="100" step="1" value="30" placeholder="30">
+                        <span class="hint">% of qualified leads that become customers</span>
+                    </div>
+                    <div class="input-group" data-symbol="$">
+                        <label for="customerValue">Average Customer Value:</label>
+                        <input type="number" id="customerValue" min="0" step="100" value="5000" placeholder="5000">
+                        <span class="hint">Average revenue per customer</span>
+                    </div>
+                </div>
             </div>
-            <div class="input-group" data-symbol="%">
-                <label for="conversionRate">Average Website Conversion Rate:</label>
-                <input type="number" id="conversionRate" min="0" max="100" step="0.01" placeholder="2.5">
-                <span class="hint">Percentage of visitors who become leads</span>
+
+            <!-- Business Metrics Section -->
+            <div class="metric-group">
+                <div class="metric-header">
+                    <h3>Business Metrics</h3>
+                    <p class="metric-description">
+                        These metrics reflect your overall business profitability. They account for your 
+                        profit margins and operational costs to give you a complete picture of your 
+                        marketing ROI.
+                    </p>
+                </div>
+                <div class="metric-inputs">
+                    <div class="input-group" data-symbol="%">
+                        <label for="margin">Average Margin:</label>
+                        <input type="number" id="margin" min="0" max="100" step="1" value="40" placeholder="40">
+                        <span class="hint">Your profit margin percentage</span>
+                    </div>
+                    <div class="input-group" data-symbol="$">
+                        <label for="agencyCost">Marketing Agency/Team Cost:</label>
+                        <input type="number" id="agencyCost" min="0" step="100" value="2500" placeholder="2500">
+                        <span class="hint">Monthly cost of marketing team or agency</span>
+                    </div>
+                </div>
             </div>
-            <div class="input-group" data-symbol="%">
-                <label for="qualificationRate">Average Qualification Rate:</label>
-                <input type="number" id="qualificationRate" min="0" max="100" step="0.01" placeholder="25">
-                <span class="hint">Percentage of leads that qualify for your service</span>
-            </div>
-            <div class="input-group" data-symbol="%">
-                <label for="closeRate">Average Close Rate:</label>
-                <input type="number" id="closeRate" min="0" max="100" step="0.01" placeholder="30">
-                <span class="hint">% of qualified leads that become customers</span>
-            </div>
-            <div class="input-group" data-symbol="$">
-                <label for="customerValue">Average Customer Value:</label>
-                <input type="number" id="customerValue" min="0" step="0.01" placeholder="5000">
-                <span class="hint">Average revenue per customer</span>
-            </div>
-            <div class="input-group" data-symbol="%">
-                <label for="margin">Average Margin:</label>
-                <input type="number" id="margin" min="0" max="100" step="0.01" placeholder="40">
-                <span class="hint">Your profit margin percentage</span>
-            </div>
-            <div class="input-group" data-symbol="$">
-                <label for="agencyCost">Marketing Agency/Team Cost:</label>
-                <input type="number" id="agencyCost" min="0" step="0.01" placeholder="2500">
-                <span class="hint">Monthly cost of marketing team or agency</span>
-            </div>
-            <button onclick="calculateROI()">Calculate</button>
+
+            <button id="calculateButton">Calculate</button>
         </div>
 
         <div class="results-section">
@@ -83,6 +129,12 @@
                 <span id="roi">0</span>
             </div>
             <div class="roi-message" id="roiMessage"></div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Need Help With Your Digital Marketing?</h2>
+            <p>Talk to a marketing strategist to better understand your top digital opportunities. Book a 30-minute, no-strings-attached video call with our team.</p>
+            <a href="https://www.ollometrics.com/" target="_blank" class="cta-button">Book a Call</a>
         </div>
     </div>
     <script src="script.js"></script>

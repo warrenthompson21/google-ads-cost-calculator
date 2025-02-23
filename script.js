@@ -1,4 +1,21 @@
+// Add event listener when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the calculate button by ID
+    const calculateButton = document.getElementById('calculateButton');
+    if (calculateButton) {
+        calculateButton.addEventListener('click', calculateROI);
+        console.log('Calculator button listener added'); // Debug log
+    } else {
+        console.log('Calculator button not found'); // Debug log
+    }
+});
+
+// Also add click handler directly to window object as backup
+window.calculateROI = calculateROI;
+
 function calculateROI() {
+    console.log('Calculate function running'); // Debug log
+    
     // Get input values
     const adSpend = parseFloat(document.getElementById('adSpend').value) || 0;
     const cpc = parseFloat(document.getElementById('cpc').value) || 0;
@@ -10,40 +27,32 @@ function calculateROI() {
     const agencyCost = parseFloat(document.getElementById('agencyCost').value) || 0;
 
     // Calculate metrics
-    const clicks = Math.round(adSpend / cpc);
-    const leads = Math.round(clicks * (conversionRate / 100));
-    const qualifiedLeads = Math.round(leads * (qualificationRate / 100));
-    const customers = Math.round(qualifiedLeads * (closeRate / 100));
+    const clicks = adSpend / cpc;
+    const leads = clicks * (conversionRate / 100);
+    const costPerLead = adSpend / leads;
+    const customers = leads * (qualificationRate / 100) * (closeRate / 100);
     const revenue = customers * customerValue;
-    const grossProfit = revenue * (margin / 100);
-    const totalCost = adSpend + agencyCost;
-    const profit = grossProfit - totalCost;
-    const roi = totalCost > 0 ? ((profit / totalCost) * 100) : 0;
-    const costPerLead = leads > 0 ? (totalCost / leads) : 0;
+    const profit = revenue * (margin / 100) - adSpend - agencyCost;
+    const roi = ((profit / (adSpend + agencyCost)) * 100).toFixed(2);
 
     // Update results
-    document.getElementById('clicks').textContent = clicks.toLocaleString();
-    document.getElementById('costPerLead').textContent = '$' + costPerLead.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-    document.getElementById('customers').textContent = customers.toLocaleString();
-    document.getElementById('revenue').textContent = '$' + revenue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-    document.getElementById('profit').textContent = '$' + profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-    
-    const roiElement = document.getElementById('roi');
-    roiElement.textContent = roi.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '%';
-    
-    // Update ROI color
-    const messageElement = document.getElementById('roiMessage');
-    if (roi > 0) {
-        roiElement.className = 'positive';
-        messageElement.className = 'roi-message positive';
-        if (roi > 100) {
-            messageElement.textContent = "Excellent! Your PPC campaign is generating outstanding returns. Keep optimizing to maintain these great results!";
-        } else {
-            messageElement.textContent = "Great job! Your PPC campaign is profitable. Consider testing new strategies to improve ROI further.";
-        }
+    document.getElementById('clicks').textContent = clicks.toFixed(0);
+    document.getElementById('costPerLead').textContent = costPerLead.toFixed(2);
+    document.getElementById('customers').textContent = customers.toFixed(1);
+    document.getElementById('revenue').textContent = revenue.toFixed(2);
+    document.getElementById('profit').textContent = profit.toFixed(2);
+    document.getElementById('roi').textContent = roi;
+
+    // Update ROI message
+    const roiMessage = document.getElementById('roiMessage');
+    if (roi > 100) {
+        roiMessage.textContent = `Your campaign is profitable! You're making ${(roi - 100).toFixed(2)}% more than you're spending.`;
+        roiMessage.style.color = 'green';
+    } else if (roi < 100) {
+        roiMessage.textContent = `Your campaign is losing money. You're making ${(100 - roi).toFixed(2)}% less than you're spending.`;
+        roiMessage.style.color = 'red';
     } else {
-        roiElement.className = 'negative';
-        messageElement.className = 'roi-message negative';
-        messageElement.textContent = "Your campaign needs some optimization. Try adjusting your targeting, improving landing pages, or testing different ad creatives to boost performance.";
+        roiMessage.textContent = "Your campaign is breaking even.";
+        roiMessage.style.color = 'black';
     }
 } 

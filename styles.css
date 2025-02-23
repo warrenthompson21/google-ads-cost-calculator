@@ -6,10 +6,10 @@ body {
 }
 
 .calculator-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     background-color: white;
-    padding: 30px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -24,12 +24,20 @@ h2 {
     margin-bottom: 20px;
 }
 
+.calculator-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .input-section {
     margin-bottom: 30px;
     border: 1px solid #ddd;
     padding: 25px;
     border-radius: 8px;
     background-color: #fafafa;
+    overflow-x: hidden;
+    width: auto;
+    box-sizing: border-box;
 }
 
 .input-section h2 {
@@ -60,30 +68,63 @@ h2 {
     padding-left: 15px;
 }
 
-.input-group input {
-    padding: 8px 25px 8px 45px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 180px;
-    font-size: 1.1em;
-    height: 40px;
-    text-align: center;
+.input-group {
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 15px;
 }
 
-.input-group::before {
-    content: attr(data-symbol);
+.input-group label {
+    width: 250px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.input-group input {
+    width: 150px;
+    padding: 8px 35px;
+    text-align: center;
+    position: relative;
+    flex-shrink: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.1em;
+    height: 40px;
+}
+
+.input-group[data-symbol="$"]::before {
+    content: "$";
     position: absolute;
-    left: 285px;
+    left: 275px;
     top: 50%;
     transform: translateY(-50%);
     color: #666;
+    font-size: 1.1em;
     z-index: 1;
     padding: 0 18px;
+}
+
+.input-group[data-symbol="%"]::before {
+    content: "%";
+    position: absolute;
+    left: 275px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
     font-size: 1.1em;
+    z-index: 1;
+    padding: 0 18px;
 }
 
 .hint {
-    margin-left: 40px;
+    margin-left: 20px;
+    flex: 1;
+    min-width: 150px;
     color: #666;
     font-size: 0.9em;
     font-style: italic;
@@ -95,22 +136,20 @@ label {
 }
 
 button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
+    background-color: #e65c00;
     color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 30px;
-    margin-left: 15px;
-    width: calc(100% - 30px);
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #ff6b00;
 }
 
 .result-group span {
@@ -159,4 +198,115 @@ input::-ms-input-placeholder {
 /* For Internet Explorer */
 input:-ms-input-placeholder {
     color: #aaa;
-} 
+}
+
+.metric-group {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.metric-header {
+    flex: 0 0 250px;
+}
+
+.metric-description {
+    color: #6c757d;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+}
+
+.metric-inputs {
+    flex: 1;
+    min-width: 0;
+}
+
+.metric-group h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.cta-section {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 40px;
+    background-color: #003C79;
+    border-radius: 8px;
+    color: white;
+}
+
+.cta-section h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.cta-section p {
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ff6b00;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #e65c00;
+}
+
+.results-section {
+    background-color: #f5f5f5;
+    padding: 40px 15%;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.results-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.result-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.result-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+.result-group span {
+    font-size: 1.1em;
+    color: #ff6b00;
+    font-weight: bold;
+}
+
+.roi-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    font-weight: bold;
+}
