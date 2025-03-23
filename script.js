@@ -36,11 +36,11 @@ function calculateROI() {
     const roi = ((profit / (adSpend + agencyCost)) * 100).toFixed(2);
 
     // Update results
-    document.getElementById('clicks').textContent = clicks.toFixed(0);
+    document.getElementById('leads').textContent = leads.toFixed(0);
     document.getElementById('costPerLead').textContent = costPerLead.toFixed(2);
-    document.getElementById('customers').textContent = customers.toFixed(1);
-    document.getElementById('revenue').textContent = revenue.toFixed(2);
-    document.getElementById('profit').textContent = profit.toFixed(2);
+    document.getElementById('customers').textContent = customers.toFixed(0);
+    document.getElementById('revenue').textContent = revenue.toFixed(0);
+    document.getElementById('profit').textContent = profit.toFixed(0);
     document.getElementById('roi').textContent = roi;
 
     // Update ROI message
